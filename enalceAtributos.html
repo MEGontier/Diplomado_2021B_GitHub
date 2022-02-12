@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <title>Hola mundo con Vue!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Enlazar atributos de elementos</title>
 </head>
 <body>
-
     <div id="app">
-        <p>{{ message }}</p> 
-        <p>{{ nombre }}</p>    
+        <span v-bind:title="message">
+            Mueve el mouse sobre mi.... 
+        </span>
+
     </div>
+    
 </body>
 
 <script>
-    var app = new Vue({
+    var app = new Vue ({
         el: '#app',
         data: {
-            message: 'Hola vue!',
-            nombre: 'Diplomado 2021B'
+            message: 'Usted cargó esta página el' + new Date().toLocaleString()
         }
     })
 </script>
