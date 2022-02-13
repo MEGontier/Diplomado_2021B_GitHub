@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- INLCUSIÓN DIRECTA CON SCRIPT DE VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Renderización condicional</title>
+</head>
+<body>
+    <div id="app">
+        <label for="producto"> Producto </label> <br />
+        <input type="number" v-model.number="items">
+        <br />
+        <p v-if="hasItems() && !descuento()">
+            Tu orden cuenta con {{ items }} productos.
+        </p>
+        <p v-else-if="descuento()">
+            Tu orden cuenta con {{ items }} productos.
+            Eres elegible para un 20% de descuento.
+        </p>
+        <p v-else>
+            Tu orden esta vacía.
+        </p>
+    </div>
+    
+</body>
+
+<script>
+    var app = new Vue ({
+        el: '#app',
+        data: {
+            items: 0
+        },
+        methods: {
+            hasItems: function(){
+                return this.items > 0;
+            },
+            descuento: function(){
+                return this.items > 5;
+            }
+        }
+    })
+</script>
+</html>

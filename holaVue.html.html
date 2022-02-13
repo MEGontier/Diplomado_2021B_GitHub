@@ -5,24 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- INLCUSIÓN DIRECTA CON SCRIPT DE VUE -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <title>Enlazar atributos</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Hola mundo con Vue!</title>
 </head>
 <body>
+    <!-- En este primer ejercicio, conoceremos la instancia de Vue para nuestro Hola undo con Vue! -->
     <div id="app">
-        <span v-bind:title="message">
-            Mueve el mouse sobre mi.... 
-        </span>
-
+        <p>{{ message }}</p> 
+        <p>{{ nombre }}</p>    
     </div>
-    
 </body>
 
 <script>
-    var app = new Vue ({
+    var app = new Vue({
         el: '#app',
         data: {
-            message: 'Usted cargó esta página el' + new Date().toLocaleString()
+            message: 'Hola vue!',
+            nombre: 'Diplomado 2021B'
         }
     })
 </script>

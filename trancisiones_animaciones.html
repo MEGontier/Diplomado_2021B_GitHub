@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <!-- INLCUSIÓN DIRECTA CON SCRIPT DE VUE -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style type="text/css">
+           .fade-enter-active, .fade-leave-active{
+               transition: opacity .5s
+           }
+           .fade-enter, .fade-leave.to{
+               opacity: 0
+           }
+          </style>
+          </head>
+        <title>
+            Transiciones 
+        </title>
+        <body>
+            <h4>Ejemplo Transiciones</h4>
+
+            <div id="app">
+                <button v-on:click="show = !show">
+                    Mostrar/Ocultar 
+                </button>
+                <transition name="fade">
+                    <p v-if="show">Hola</p>
+                </transition>
+            </div>
+
+            <script>
+                new Vue({
+                    el: '#app',
+                    data: {
+                        show:true
+                    }
+                })
+            </script>
+
+        </body>
+
+    
+</html>

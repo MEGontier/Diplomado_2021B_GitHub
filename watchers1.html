@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- INLCUSIÓN DIRECTA CON SCRIPT DE VUE -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <title>Enlazar atributos</title>
+   <title>Ejercicio Watchers</title>
 </head>
 <body>
     <div id="app">
-        <span v-bind:title="message">
-            Mueve el mouse sobre mi.... 
-        </span>
-
+        <input placeholder="Escribe tu nombre" v-model="nombre" type="text" name="nombre" id="nombre">
     </div>
     
 </body>
 
 <script>
-    var app = new Vue ({
+    const app = new Vue({
         el: '#app',
-        data: {
-            message: 'Usted cargó esta página el' + new Date().toLocaleString()
+        data: ()=>({
+            nombre: "",
+        }),
+        watch: {
+            nombre(nuevoValor, valorAnterior){
+                console.log("El nombre pasó de ser '$s' a '$s'", valorAnterior, nuevoValor);
+            }
         }
     })
 </script>

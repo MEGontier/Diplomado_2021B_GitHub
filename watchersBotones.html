@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- INLCUSIÓN DIRECTA CON SCRIPT DE VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+   <title>Watchers con botones</title>
+</head>
+<body>
+    <div id="app">
+        <span> {{ counter }}</span>
+        <button @click="add">Agregar</button>
+        <button @click="sub">Remover</button>
+    </div>
+    
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: ()=>({
+            counter: 0
+        }),
+        methods: {
+            add: function(){
+                this.counter++;
+            },
+            sub: function(){
+                this.counter--;
+            }
+        },
+        watch: {
+            counter: function(newValue, oldValue){
+                console.log(oldValue,newValue)
+            }
+        }
+    })
+</script>
+</html>
