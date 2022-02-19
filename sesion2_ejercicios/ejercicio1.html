@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.15/dist/vue.js"></script>
+    <!-- Estilos para enlazar clases dinamicamente -->
+    <style type="text/css">
+        .stock{
+            text-decoration: line-through;
+            color: brown;
+        }
+        .priority{
+            text-decoration: solid;
+            color: blue;
+        }
+    </style>
+
+    <title>Ejercicio</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Expresión de Vue -->
+        <h1> {{header.toLocaleUpperCase()}} </h1>
+        <div v-if="status === 'edit'" id="form">
+        <!-- Escuchar el evento Keyup -->
+        <input  v-model="newItem" type="text" placeholder="Agregar un producto"
+        v-on:keyup.enter="saveItem">
+        <p> {{characterCount}}/20 </p>
+        <!-- Directiva v-on y Directiva v-bind-->
+        <button v-on:click="saveItem" v-bind:disabled = "newItem.length === 0">Agregar</button>
+    </div>
+    <br>
+    <div>
+        <button v-if="status === 'default'" @click="changeStatus('edit')">Agregar productos</button>
+        <button v-else @click="changeStatus('default')"> Cancelar </button>
+    </div>
+
+        <!-- Diectiva v-for  y Directiva v-bind-->
+        <ul>
+            <li v-for="product in reverseProducts" :class="{stock: product.inStock === false}" @click="changeStock(product)">
+                {{product.label}}
+            </li>
+        </ul>
+        <!-- Directiva v-if -->
+        <p v-if="products.length === 0"> No hay productos para mostrar</p>
+    </div>
+    
+</body>
+<!-- VUE INSTANCE -->
+<script>
+    var productList = new Vue({
+        el: '#app',
+        data: {
+            status: 'default',
+            header: 'Lista de artículos',
+            newItem: '',
+            products: [
+                // Arreglo de objetos 
+                {
+                    label: "Protección de equipos informaticos",
+                    inStock: true,
+                    highPriority: true
+                },
+                {
+                    label: "Accesorios",
+                    inStock: false,
+                    highPriority: true
+                },
+                {
+                    label: "Kit de limpieza de equipos de cómputo",
+                    inStock: false,
+                    highPriority: false
+                }
+                // Arreglo de productos
+                // 'Protección de equipos informaticos',
+                // 'Accesorios',
+                // 'Kit de limpieza de equipos de cómputo'
+            ]
+        },
+        // Definición de métodos
+        methods:{
+            saveItem: function(){
+                this.products.push(
+                    {
+                        label: this.newItem,
+                        inStock: true
+                    },
+                );
+                this.newItem = ''
+            },
+            changeStatus: function(newStatus){
+                this.status = newStatus;
+                this.newItem = '';
+            },
+            changeStock: function (product) {
+                product.inStock = !product.inStock;
+            }
+
+        },
+        // Definición de propiedades computadas
+        computed: {
+            characterCount(){
+                return this.newItem.length;
+            },
+            reverseProducts(){
+                return this.products.slice(0).reverse();
+            }
+        }
+    });
+</script>
+</html>
