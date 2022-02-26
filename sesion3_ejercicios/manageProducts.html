@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="product_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Manage Product</title>
+</head>
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="cart">
+            <p>Carrito({{ cart.length }})</p>
+        </div>
+        <product @add-to-cart="updateCart"></product>
+        <product @add-to-cart="updateCart"></product>
+        <product @add-to-cart="updateCart"></product>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
